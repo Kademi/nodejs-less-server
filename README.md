@@ -48,7 +48,7 @@ sudo apt-get update
 sudo apt-get install -y build-essential openssl libssl-dev pkg-config
 ```
 
-Download the latest node.js source package from the http://nodejs.org/download/ and decompress it:
+Download the latest node.js source package from http://nodejs.org/download/ and decompress it:
 ```bash
 cd ~
 wget http://nodejs.org/dist/v0.12.0/node-v0.12.0.tar.gz
@@ -64,9 +64,9 @@ make
 sudo make install
 ```
 
-### Running node server on port number under 1024 without root
+### Running node server on port number below 1024 without root
 
-This step is optional. In order to be able to run application on 80 port run the following commands:
+This step is optional. In order to be able to run the application on 80 port run the following commands:
 ```bash
 sudo apt-get install libcap2-bin
 sudo setcap cap_net_bind_service=+ep /usr/local/bin/node
@@ -81,7 +81,7 @@ sudo npm install pm2 -g
 
 ### Creating unpriviledged user to run the server
 
-We're going to create user called "node":
+We're going to create user called `node`:
 ```bash
 sudo useradd -s /bin/bash -m -d /home/node -c "nodejs user” node
 sudo passwd node
@@ -90,7 +90,7 @@ sudo usermod -aG sudo
 
 ### Installing application
 
-Login as "node" user:
+Login as `node` user:
 ```bash
 sudo -iu node
 ```
@@ -105,7 +105,7 @@ npm install
 
 Now the application is installed and can be run within a current terminal session using `node server.js` command (this should only be used for debugging purposes).
 
-To install the application as a daemon using previously installed PM2 package type in the following (this will also start the app):
+To install the application as a daemon using previously installed PM2 package, type in the following (this will also start the app):
 
 ```bash
 PORT=80 pm2 start server.js -n nodejs-less-server
@@ -115,8 +115,6 @@ Then create a system startup script for PM2, so it will start when the system bo
 ```bash
 sudo env PATH=$PATH:/usr/local/bin pm2 startup -u node
 ```
-
-Now the installation is completed.
 
 ### Notes on PM2
 
