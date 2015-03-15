@@ -15,7 +15,7 @@ Example querying service from command-line:
 curl -v --form "less=@sample.less"  --form "url=http://example.com/some/path/" http://localhost:3000
 ```
 
-In case of error service returns HTTP error 400 with error description in the body:
+In case of error, service returns HTTP error 400 with error description in the body:
 
 ```
 Column=1
