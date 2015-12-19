@@ -2,8 +2,10 @@ var less = require('less');
 
 var FAKE_FILENAME = '__input__.less';
 
-exports.run = function(input, baseURL, callback) {
-    var lessOptions = {};
+exports.run = function (input, baseURL, compress, callback) {
+    var lessOptions = {
+        compress: compress
+    };
 
     if (baseURL) {
         // Set a fake filename, so the less compiler could resolve imports using baseURL as a root
@@ -12,19 +14,19 @@ exports.run = function(input, baseURL, callback) {
         lessOptions.filename = FAKE_FILENAME;
     }
 
-    less.render(input, lessOptions, function(err, output) {
+    less.render(input, lessOptions, function (err, output) {
         if (err) {
             return callback(prepareError(err, baseURL));
         }
-        
+
         callback(null, output.css);
     });
 };
 
 function prepareError(err, baseURL) {
     var originalMessage = err.message,
-        errorLines = [],
-        extractLines = [];
+            errorLines = [],
+            extractLines = [];
 
     if (err.stack && !err.type) {
         err.message = "Message=" + err.stack;
@@ -56,9 +58,11 @@ function prepareError(err, baseURL) {
     if (typeof err.extract[1] == 'string') {
         extractLines.push('' + (err.line) + ' ' + err.extract[1]);
         var whitespacePrefix = '',
-            _groups = err.extract[1].match(/^(\s*)/i);
+                _groups = err.extract[1].match(/^(\s*)/i);
 
-        if (_groups) { whitespacePrefix = _groups[0]; }
+        if (_groups) {
+            whitespacePrefix = _groups[0];
+        }
 
         var pointerPosition = ('' + err.line).length + 1 + err.column + 1 - whitespacePrefix.length;
 

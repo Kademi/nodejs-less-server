@@ -8,6 +8,7 @@ POST request parameters:
 
 - `less` - LESS source to compile
 - `url` - base URL for @import includes (optional)
+- `compress` - 'true' or 'false', compress the output (optional)
 
 Example querying service from command-line:
 

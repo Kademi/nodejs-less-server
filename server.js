@@ -1,8 +1,8 @@
 var http = require('http'),
-    formidable = require('formidable'),
-    urllib = require('url'),
-    fs = require('fs'),
-    compiler = require('./compiler');
+        formidable = require('formidable'),
+        urllib = require('url'),
+        fs = require('fs'),
+        compiler = require('./compiler');
 
 var settings = {
     PORT: process.env.PORT || 3000
@@ -18,19 +18,25 @@ function respondWithResult(res, result) {
     res.end(result);
 }
 
-http.createServer(function(req, res) {
+http.createServer(function (req, res) {
 
     if (req.url === '/' && req.method.toLowerCase() === 'post') {
         // Main entry point (POST request to /)
         var form = new formidable.IncomingForm();
 
-        form.parse(req, function(err, fields, files) {
-            var url = fields.url || '',
-                input = fields.less;
+        form.parse(req, function (err, fields, files) {
+            var
+                    url = fields.url || '',
+                    compress = fields.compress || false,
+                    input = fields.less;
+
+            if (typeof compress === 'string') {
+                compress = compress === 'true';
+            }
 
             if (typeof input == 'undefined' && files.less) {
                 // Source file has been received as an attachment
-                input = fs.readFileSync(files.less.path, { encoding: 'utf-8' });
+                input = fs.readFileSync(files.less.path, {encoding: 'utf-8'});
             }
 
             if (!input) {
@@ -50,7 +56,7 @@ http.createServer(function(req, res) {
                 parsedURL = null;
             }
 
-            compiler.run(input, parsedURL, function(err, output) {
+            compiler.run(input, parsedURL, compress, function (err, output) {
                 if (err) {
                     console.log('Compilation failed for request with URL set to:', url);
                     console.log(err.message + '\n');
@@ -64,6 +70,6 @@ http.createServer(function(req, res) {
         return respondWithError(res, 404, 'Nothing to do here');
     }
 
-}).listen(settings.PORT, function() {
+}).listen(settings.PORT, function () {
     console.log('LESS server is running on port', settings.PORT);
 });
