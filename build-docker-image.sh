@@ -29,7 +29,7 @@ cd $WORKSPACE
 sudo docker build -t nodejs-less-server .
 
 #tag it.
-sudo docker tag -f nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0001
+sudo docker tag -f nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0002
 
 sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
 

@@ -17,6 +17,7 @@ RUN set -ex \
 
 ENV NPM_CONFIG_LOGLEVEL info
 ENV NODE_VERSION 5.8.0
+ENV PORT 80
 
 RUN buildDeps='xz-utils' \
     && set -x \
@@ -35,8 +36,8 @@ ADD package.json /var/lib/nodejsless
 ADD server.js /var/lib/nodejsless
 ADD compiler.js /var/lib/nodejsless
 
-EXPOSE 3000
+EXPOSE 80
 
 RUN cd /var/lib/nodejsless; npm install --production
 
-CMD cd /var/lib/nodejsless; npm start
+CMD cd /var/lib/nodejsless; PORT=80; npm start
