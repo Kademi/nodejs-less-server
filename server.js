@@ -66,6 +66,9 @@ http.createServer(function (req, res) {
                 respondWithResult(res, output);
             });
         });
+    } else if (req.url === '/health' && req.method.toLowerCase() === 'get') {
+        res.writeHead(200, {'content-type': 'text/plain'});
+        res.end("ok");
     } else {
         return respondWithError(res, 404, 'Nothing to do here');
     }
