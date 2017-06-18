@@ -29,16 +29,16 @@ function prepareError(err, baseURL) {
             extractLines = [];
 
     if (err.stack && !err.type) {
-        err.message = "Message=" + err.stack;
+        err.message = "message:" + err.stack;
         return err;
     }
     if (!err.hasOwnProperty('index') || !err.extract) {
-        err.message = "Message=" + (err.stack || originalMessage);
+        err.message = "message:" + (err.stack || originalMessage);
         return err;
     }
 
-    errorLines.push('Column=' + (err.column + 1));
-    errorLines.push('Line=' + (err.line));
+    errorLines.push('column:' + (err.column + 1));
+    errorLines.push('line:' + (err.line));
 
     if (err.filename) {
         if (baseURL) {
@@ -49,8 +49,8 @@ function prepareError(err, baseURL) {
         }
     }
 
-    errorLines.push('Filename=' + (err.filename || ''));
-    errorLines.push('Type=' + err.type + 'Error');
+    errorLines.push('filename:' + (err.filename || ''));
+    errorLines.push('type:' + err.type + 'Error');
 
     if (typeof err.extract[0] == 'string') {
         extractLines.push('' + (err.line - 1) + ' ' + err.extract[0]);
@@ -72,7 +72,7 @@ function prepareError(err, baseURL) {
     //     extractLines.push('' + (err.line + 1) + ' ' + err.extract[2]);
     // }
 
-    errorLines.push('Message=' + originalMessage);
+    errorLines.push('message:' + originalMessage);
 
     errorLines = errorLines.concat(extractLines);
     err.message = errorLines.join('\n');
