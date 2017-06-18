@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # login to docker
-sudo `aws ecr get-login --region=us-east-1`
+sudo $(aws ecr get-login --no-include-email --region=us-east-1)
 
 # Remove old images and containers
 sudo docker rm `sudo docker ps -qa`
@@ -29,7 +29,7 @@ cd $WORKSPACE
 sudo docker build -t nodejs-less-server .
 
 #tag it.
-sudo docker tag -f nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0004
+sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0005
 
 sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
 
