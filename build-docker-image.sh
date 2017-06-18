@@ -19,6 +19,7 @@ rm -rf $WORKSPACE
 mkdir -p $WORKSPACE
 
 cp -r compiler.js $WORKSPACE
+cp -r worker.js $WORKSPACE
 cp -r server.js $WORKSPACE
 cp -r package.json $WORKSPACE
 cp -r Dockerfile $WORKSPACE
@@ -32,5 +33,7 @@ sudo docker build -t nodejs-less-server .
 sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0005
 
 sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
+
+rm -rf $WORKSPACE
 
 exit 0
