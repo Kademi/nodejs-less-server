@@ -18,10 +18,6 @@ function run_as_sudo {
 # login to docker
 run_as_sudo $(aws ecr get-login --no-include-email --region=us-east-1)
 
-# Remove old images and containers
-run_as_sudo docker rm `sudo docker ps -qa`
-run_as_sudo docker rmi --force `sudo docker images -qa`
-
 set -ex
 
 #define build parameters
