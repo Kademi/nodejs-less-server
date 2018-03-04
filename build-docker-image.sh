@@ -1,11 +1,26 @@
 #!/bin/bash
 
+# Check is user is in the Docker group
+IS_DOCKER_USER=false
+
+if id -nG | grep -qw "docker"; then
+    IS_DOCKER_USER=true
+fi
+
+function run_as_sudo {
+    if $IS_DOCKER_USER; then
+        $@
+    else
+        sudo $@
+    fi
+}
+
 # login to docker
-sudo $(aws ecr get-login --no-include-email --region=us-east-1)
+run_as_sudo $(aws ecr get-login --no-include-email --region=us-east-1)
 
 # Remove old images and containers
-sudo docker rm `sudo docker ps -qa`
-sudo docker rmi --force `sudo docker images -qa`
+run_as_sudo docker rm `sudo docker ps -qa`
+run_as_sudo docker rmi --force `sudo docker images -qa`
 
 set -ex
 
@@ -27,12 +42,12 @@ cp -r Dockerfile $WORKSPACE
 cd $WORKSPACE
 
 #build docker container
-sudo docker build -t nodejs-less-server .
+run_as_sudo docker build -t nodejs-less-server .
 
 #tag it.
-sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0051
+run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0051
 
-sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
+run_as_sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
 
 rm -rf $WORKSPACE
 
