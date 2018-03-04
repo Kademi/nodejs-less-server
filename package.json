@@ -1,13 +1,14 @@
 {
     "name": "nodejs-less-server",
-    "version": "0.5.0",
+    "version": "0.5.1",
     "private": true,
     "scripts": {
         "start": "node server.js"
     },
     "dependencies": {
-        "formidable": "^1.0.17",
-        "less": "^2.7.1",
-        "request": "^2.72.0"
+        "formidable": "^1.1.1",
+        "less": "^3.0.1",
+        "request": "^2.83.0",
+        "morgan": "^1.9.0"
     }
 }

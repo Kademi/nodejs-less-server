@@ -16,7 +16,7 @@ RUN set -ex \
   done
 
 ENV NPM_CONFIG_LOGLEVEL info
-ENV NODE_VERSION 6.11.0
+ENV NODE_VERSION 8.9.4
 ENV PORT 80
 
 RUN buildDeps='xz-utils' \
