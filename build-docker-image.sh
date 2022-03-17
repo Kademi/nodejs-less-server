@@ -15,10 +15,7 @@ function run_as_sudo {
     fi
 }
 
-# login to docker
-run_as_sudo $(aws ecr get-login --no-include-email --region=us-east-1)
-
-set -ex
+set -e
 
 #define build parameters
 WORKSPACE=/tmp/nodejsless
@@ -40,10 +37,13 @@ cd $WORKSPACE
 #build docker container
 run_as_sudo docker build -t nodejs-less-server .
 
-#tag it.
-run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0051
+export AWS_PROFILE=kademi-prod
+aws ecr get-login-password --region=us-east-1 | docker login --username AWS --password-stdin 359893553251.dkr.ecr.us-east-1.amazonaws.com
 
-run_as_sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless
+#tag it.
+run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0052
+
+run_as_sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0052
 
 rm -rf $WORKSPACE
 

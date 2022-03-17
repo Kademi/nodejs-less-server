@@ -1,4 +1,4 @@
-FROM node:8.9.4
+FROM node:16
 ENV NPM_CONFIG_LOGLEVEL info
 ENV PORT 80
 
