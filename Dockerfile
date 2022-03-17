@@ -1,6 +1,10 @@
-FROM node:16
+FROM node:16-alpine
 ENV NPM_CONFIG_LOGLEVEL info
 ENV PORT 80
+
+RUN \
+    apk update && \
+    apk upgrade
 
 RUN mkdir -p /var/lib/nodejsless
 ADD package.json /var/lib/nodejsless

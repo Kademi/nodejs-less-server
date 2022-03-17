@@ -41,9 +41,9 @@ export AWS_PROFILE=kademi-prod
 aws ecr get-login-password --region=us-east-1 | docker login --username AWS --password-stdin 359893553251.dkr.ecr.us-east-1.amazonaws.com
 
 #tag it.
-run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0052
+run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0054
 
-run_as_sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0052
+run_as_sudo docker push 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:0054
 
 rm -rf $WORKSPACE
 
