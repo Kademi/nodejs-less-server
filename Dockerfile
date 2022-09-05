@@ -8,9 +8,10 @@ RUN \
 
 RUN mkdir -p /var/lib/nodejsless
 ADD package.json /var/lib/nodejsless
-ADD server.js /var/lib/nodejsless
-ADD compiler.js /var/lib/nodejsless
-ADD worker.js /var/lib/nodejsless
+ADD server.mjs /var/lib/nodejsless
+ADD compiler.mjs /var/lib/nodejsless
+ADD worker.mjs /var/lib/nodejsless
+ADD undici-file-manager.mjs /var/lib/nodejsless
 
 EXPOSE 80
 

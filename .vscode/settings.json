@@ -1,0 +1,18 @@
+{
+    "javascript.preferences.quoteStyle": "single",
+    "js/ts.implicitProjectConfig.target": "ESNext",
+    "jshint.enable": true,
+    "typescript.format.enable": false,
+    "typescript.suggest.enabled": false,
+    "typescript.validate.enable": false,
+    "jshint.lintHTML": true,
+    "jshint.options": {
+        "curly": true,
+        "esversion": 9,
+        "nonbsp": true,
+        "unused": "vars",
+        "undef": true,
+        "evil": true,
+        "laxbreak": true
+    }
+}

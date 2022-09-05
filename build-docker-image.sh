@@ -20,16 +20,17 @@ set -e
 #define build parameters
 WORKSPACE=/tmp/nodejsless
 DATE=`date +%H%M-%d%m%Y`
-VERSION="0055"
+VERSION="0057"
 
 #clean old files if any
 rm -rf $WORKSPACE
 
 mkdir -p $WORKSPACE
 
-cp -r compiler.js $WORKSPACE
-cp -r worker.js $WORKSPACE
-cp -r server.js $WORKSPACE
+cp -r compiler.mjs $WORKSPACE
+cp -r worker.mjs $WORKSPACE
+cp -r server.mjs $WORKSPACE
+cp -r undici-file-manager.mjs $WORKSPACE
 cp -r package.json $WORKSPACE
 cp -r Dockerfile $WORKSPACE
 
