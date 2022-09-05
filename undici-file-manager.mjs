@@ -24,9 +24,7 @@ UndiciFileManager.prototype = Object.assign(new Less.AbstractFileManager(), {
                 statusCode,
                 body
             } = await request(urlStr, {
-                maxRedirections: 5,
-                // bodyTimeout: 24e4, // 4 Minutes,
-                // headersTimeout: 24e4 // 5 Minutes
+                maxRedirections: 5
             });
 
             if (statusCode >= 400) {
