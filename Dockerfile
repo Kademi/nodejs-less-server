@@ -4,7 +4,8 @@ ENV PORT 80
 
 RUN \
     apk update && \
-    apk upgrade
+    apk upgrade --no-cache && \
+    rm -rf /var/cache/apk/*
 
 RUN mkdir -p /var/lib/nodejsless
 ADD package.json /var/lib/nodejsless
@@ -13,8 +14,10 @@ ADD compiler.mjs /var/lib/nodejsless
 ADD worker.mjs /var/lib/nodejsless
 ADD undici-file-manager.mjs /var/lib/nodejsless
 
-EXPOSE 80
-
 RUN cd /var/lib/nodejsless; npm install --production
 
-CMD cd /var/lib/nodejsless; PORT=80; npm start
+WORKDIR /var/lib/nodejsless
+
+EXPOSE 80
+
+CMD ["npm", "start"]
