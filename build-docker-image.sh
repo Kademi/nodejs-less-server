@@ -20,7 +20,7 @@ set -e
 #define build parameters
 WORKSPACE=/tmp/nodejsless
 DATE=`date +%H%M-%d%m%Y`
-VERSION="0059"
+VERSION="0060"
 
 #clean old files if any
 rm -rf $WORKSPACE
@@ -40,7 +40,7 @@ cd $WORKSPACE
 run_as_sudo docker build -t nodejs-less-server .
 
 export AWS_PROFILE=kademi-prod
-aws ecr get-login-password --region=us-east-1 | docker login --username AWS --password-stdin 359893553251.dkr.ecr.us-east-1.amazonaws.com
+# aws ecr get-login-password --region=us-east-1 | docker login --username AWS --password-stdin 359893553251.dkr.ecr.us-east-1.amazonaws.com
 
 #tag it.
 run_as_sudo docker tag nodejs-less-server 359893553251.dkr.ecr.us-east-1.amazonaws.com/nodejsless:$VERSION
