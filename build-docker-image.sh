@@ -20,7 +20,7 @@ set -e
 #define build parameters
 WORKSPACE=/tmp/nodejsless
 DATE=`date +%H%M-%d%m%Y`
-VERSION="0060"
+VERSION="0061"
 
 #clean old files if any
 rm -rf $WORKSPACE
