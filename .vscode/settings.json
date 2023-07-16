@@ -14,5 +14,8 @@
         "undef": true,
         "evil": true,
         "laxbreak": true
+    },
+    "yaml.schemas": {
+        "https://json.schemastore.org/github-workflow.json": "${workspaceFolder}/.github/workflows/deploy.yml"
     }
 }
