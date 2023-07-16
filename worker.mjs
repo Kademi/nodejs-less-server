@@ -67,17 +67,30 @@ export function start() {
 
             if (req.url === '/' && req.method.toLowerCase() === 'post') {
                 // Main entry point (POST request to /)
-                var form = new formidable.IncomingForm();
+                var form = formidable({});
 
                 form.parse(req, async function (err, fields, files) {
-                    var
-                        url = fields.url || '', compress = fields.compress || false, input = fields.less;
+                    var url = '';
+                    var compress = false;
+                    var input;
+
+                    if (Array.isArray(fields.url) && fields.url.length > 0) {
+                        url = fields.url[0];
+                    }
+
+                    if (Array.isArray(fields.compress) && fields.compress.length > 0) {
+                        compress = fields.compress[0];
+                    }
 
                     if (typeof compress === 'string') {
                         compress = compress === 'true';
                     }
 
-                    if (typeof input == 'undefined' && files.less) {
+                    if (Array.isArray(fields.less) && fields.less.length > 0) {
+                        input = fields.less[0];
+                    }
+
+                    if ((typeof input == 'undefined' || input === null) && files.less) {
                         // Source file has been received as an attachment
                         input = readFileSync(files.less.path, { encoding: 'utf-8' });
                     }
