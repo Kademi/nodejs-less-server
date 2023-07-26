@@ -16,6 +16,10 @@ jobs:
       packages: write
 
     steps:
+      - name: Cleanup docker
+        run: |
+          docker system prune -af --volumes
+
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v2
 
