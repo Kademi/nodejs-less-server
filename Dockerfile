@@ -7,6 +7,9 @@ RUN \
     apk upgrade --no-cache && \
     rm -rf /var/cache/apk/*
 
+RUN npm install -g npm@latest && \
+    npm install -g corepack@latest
+
 RUN mkdir -p /var/lib/nodejsless
 ADD package.json /var/lib/nodejsless
 ADD server.mjs /var/lib/nodejsless
