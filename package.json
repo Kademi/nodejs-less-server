@@ -1,15 +1,15 @@
 {
     "name": "nodejs-less-server",
-    "version": "0.5.9",
+    "version": "0.6.0",
     "private": true,
     "scripts": {
         "start": "node server.mjs"
     },
     "dependencies": {
-        "formidable": "^3.5.0",
+        "formidable": "^3.5.1",
         "less": "^4.2.0",
         "morgan": "^1.10.0",
-        "undici": "^5.27.2",
-        "semver": "^7.5.4"
+        "undici": "^6.6.2",
+        "semver": "^7.6.0"
     }
 }

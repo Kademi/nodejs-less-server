@@ -1,5 +1,5 @@
 import Less from 'less';
-import { Agent, request, setGlobalDispatcher } from 'undici';
+import { request } from 'undici';
 import { URL } from 'node:url';
 
 const isUrlRe = /^(?:https?:)?\/\//i;
