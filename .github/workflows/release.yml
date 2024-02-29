@@ -46,7 +46,7 @@ jobs:
         with:
           images: |
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-            ${{ steps.login-ecr.outputs.registry }}/nodejsless
+            ${{ steps.login-ecr.outputs.registry }}/${{ env.AWS_REPO_NAME }}
           flavor: |
             latest=true
           tags: |
